@@ -10,7 +10,7 @@
     "pretty-quick": "npx pretty-quick --staged --verbose --pattern \"**/*.*(js|ts|json)\"",
     "prestart:dev": "npx sequelize-cli db:migrate",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/index.ts --trace-warnings",
-    "test": "jest --verbose",
+    "test": "jest --verbose --passWithNoTests",
     "test:coverage": "jest --coverage",
     "migrate:up": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo"
