@@ -21,7 +21,7 @@ export class SQLiteDatabaseHelper implements Database {
     }
 
     private initModels() {
-        const Order = this.database.define<OrderDB>('Order', OrderDBProps, { tableName: 'rural_producers', paranoid: true, underscored: true });
+        const Order = this.database.define<OrderDB>('Order', OrderDBProps, { tableName: 'orders', paranoid: true, underscored: true });
 
         this.models.Order = Order;
     }
@@ -29,7 +29,7 @@ export class SQLiteDatabaseHelper implements Database {
     connect = async () => {
         this.initModels();
 
-        await this.database.sync();
+        await this.database.sync({ force: true });
 
         await this.authenticate();
     };

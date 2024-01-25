@@ -3,12 +3,14 @@ import { database } from "@env";
 import { OrderRepository } from "@interfaces/order-repository.interface";
 
 export class SQLiteOrderRepository implements OrderRepository {
-    create(params: CreateOrderDTO) {
+    async create(params: CreateOrderDTO) {
         return database.create('Order', params);
     }
 
-    getByOrderId(orderId: number) {
-
+    async getByOrderId(orderId: number) {
+        return database.findOne("Order", {
+            where: { orderId }
+        })
     }
 
     saveHistory(params: SaveHistoryDTO) {

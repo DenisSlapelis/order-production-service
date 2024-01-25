@@ -9,7 +9,7 @@ export class CreateOrderUseCase {
 
         const initialStatus = OrderStatusENUM.RECEIVED;
 
-        await this.repository.create({ orderId, status: initialStatus, createdBy });
+        return this.repository.create({ orderId, status: initialStatus, createdBy });
     }
 
     private checkIfAlreadyExists = async (orderId: number) => {

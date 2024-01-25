@@ -14,6 +14,7 @@ module.exports = {
             orderId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                field: 'order_id',
             },
             status: {
                 type: DataTypes.STRING,
