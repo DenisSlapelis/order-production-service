@@ -1,4 +1,4 @@
-FROM node:20.9.0-slim as NODE_PROD
+FROM node:20.9.0-slim AS NODE_PROD
 
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
