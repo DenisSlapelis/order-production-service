@@ -13,4 +13,6 @@ app.use(loggerMiddleware.use);
 
 app.use(authMiddleware.use);
 
-app.use(routes)
+app.use(routes);
+
+app.disable("x-powered-by");
