@@ -26,11 +26,17 @@ describe('Create rural producer use case', () => {
             delete result.updatedAt;
 
             expect(result).toEqual({
-                "createdBy": 1,
-                "id": 1,
-                "orderId": 1,
-                "status": "RECEIVED",
+                createdBy: 1,
+                id: 1,
+                orderId: 1,
+                status: "RECEIVED",
             });
+        });
+
+        test('should throw an error on create with duplicate orderId', async () => {
+            expect(async () => {
+                await useCase.create(1, 1)
+            }).rejects.toThrow();
         });
     });
 });
