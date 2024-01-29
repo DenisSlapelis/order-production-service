@@ -6,9 +6,8 @@ export const orderRoutes = Router();
 // ** POST **
 orderRoutes.post('/', makeCreateOrderController().handle);
 
-// // ** GET **
+// ** GET **
 
-// // ** PUT **
-// orderRoutes.put('/:id', makeUpdateOrderStatusController().handle);
+// ** PUT **
 
-// // ** DELETE **
+// ** DELETE **
