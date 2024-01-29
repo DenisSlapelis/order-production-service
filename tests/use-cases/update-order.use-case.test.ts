@@ -21,7 +21,7 @@ describe('Update order use case', () => {
             await repository.create({ orderId: 1, status: OrderStatusENUM.RECEIVED, createdBy: 1 });
         });
 
-        it('should update the order status', async () => {
+        test('should update the order status', async () => {
             const spyRepostoryGetByOrderId = jest.spyOn(repository, 'getByOrderId');
             const spyUseCaseValidateStatus = jest.spyOn(useCase, 'validateStatus');
             const spyRepositoryUpdate = jest.spyOn(repository, 'update');
@@ -44,13 +44,13 @@ describe('Update order use case', () => {
             });
         });
 
-        it('should throw an error for invalid status order', async () => {
+        test('should throw an error for invalid status order', async () => {
             await expect(useCase.update(1, OrderStatusENUM.RECEIVED)).rejects.toThrow();
         });
     });
 
     describe('validateStatus', () => {
-        it('should throw an error for invalid status order', async () => {
+        test('should throw an error for invalid status order', async () => {
             expect(() => { useCase['validateStatus'](OrderStatusENUM.RECEIVED, OrderStatusENUM.RECEIVED) }).toThrow('Invalid status');
         });
     });
