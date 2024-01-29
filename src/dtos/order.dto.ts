@@ -10,7 +10,9 @@ export interface CreateOrderDTO {
     status: OrderStatusENUM;
 }
 
-export interface UpdateOrderDTO extends CreateOrderDTO { };
+export interface UpdateOrderDTO extends CreateOrderDTO {
+    updatedBy: number;
+ };
 
 export interface UpdateOrderModelDTO extends UpdateOrderDTO { };
 

@@ -1,10 +1,11 @@
-import { OrderStatusENUM } from '@dtos/order.dto';
+import { OrderStatusENUM, UpdateOrderDTO } from '@dtos/order.dto';
 import { OrderRepository } from '@interfaces/order-repository.interface';
 
 export class UpdateOrderStatusUseCase {
     constructor(private repository: OrderRepository) { }
 
-    update = async (orderId: number, status: OrderStatusENUM) => {
+    update = async (params: UpdateOrderDTO) => {
+        const { orderId, status } = params;
         const order = await this.repository.getByOrderId(orderId);
 
         if (!order) throw new Error(`Order with id ${orderId} was not found.`);
@@ -13,7 +14,7 @@ export class UpdateOrderStatusUseCase {
 
         this.validateStatus(currentStatus, status);
 
-        return this.repository.update({ orderId, status });
+        return this.repository.update(params);
     }
 
     validateStatus = (currentStatus: OrderStatusENUM, newStatus: OrderStatusENUM) => {
