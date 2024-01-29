@@ -23,7 +23,6 @@ const jestConfig: JestConfigWithTsJest = {
         '^@useCases/(.*)$': ["<rootDir>/src/use-cases/$1"],
     },
     collectCoverageFrom: [
-        '<rootDir>/src/controllers/**/*.ts',
         '<rootDir>/src/repositories/**/*.ts',
         '<rootDir>/src/use-cases/**/*.ts',
     ],
