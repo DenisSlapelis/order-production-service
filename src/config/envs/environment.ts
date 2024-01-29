@@ -4,7 +4,7 @@ import { asyncEnvs } from '@dependency';
 
 @singleton()
 export class Environment {
-  static instance: Environment;
+  public static readonly instance: Environment;
   envs: {};
 
   constructor() {
