@@ -10,7 +10,7 @@ export class SQLiteOrderRepository implements OrderRepository {
     async getByOrderId(orderId: number) {
         return database.findOne("Order", {
             where: { orderId }
-        })
+        });
     }
 
     saveHistory(params: SaveHistoryDTO) {
@@ -18,6 +18,10 @@ export class SQLiteOrderRepository implements OrderRepository {
     }
 
     update(params: UpdateOrderDTO) {
+        const { status, orderId } = params;
 
+        return database.update("Order", { status }, {
+            where: { orderId }
+        });
     }
 }
