@@ -35,4 +35,22 @@ describe('Create order use case', () => {
             }).rejects.toThrow();
         });
     });
+
+    describe('checkIfAlreadyExists method', () => {
+        test('should not throw an error on checks with new orderId', async () => {
+            const spyUseCase = {
+                checkIfAlreadyExists: (orderId) => useCase['checkIfAlreadyExists'],
+            };
+
+            const spy = jest.spyOn(spyUseCase, 'checkIfAlreadyExists');
+
+            spyUseCase.checkIfAlreadyExists(2);
+
+            expect(spy).toHaveBeenCalled();
+        });
+
+        test('should throw an error on create with duplicate orderId', async () => {
+            expect(useCase['checkIfAlreadyExists'](1)).rejects.toThrow();
+        });
+    });
 });

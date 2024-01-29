@@ -17,11 +17,13 @@ export class SQLiteOrderRepository implements OrderRepository {
         throw new Error(`Method not implemented yet. Params: ${params}`);
     }
 
-    update(params: UpdateOrderDTO) {
+    async update(params: UpdateOrderDTO) {
         const { status, orderId } = params;
 
-        return database.update("Order", { status }, {
+        await database.update("Order", { status }, {
             where: { orderId }
         });
+
+        return this.getByOrderId(params.orderId);
     }
 }

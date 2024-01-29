@@ -13,16 +13,16 @@ export class UpdateOrderStatusUseCase {
 
         this.validateStatus(currentStatus, status);
 
-        await this.repository.update({ orderId, status });
+        return this.repository.update({ orderId, status });
     }
 
-    private validateStatus = async (currentStatus: OrderStatusENUM, newStatus: OrderStatusENUM) => {
-        const handleStauts = {
-            [OrderStatusENUM.PREPARATION]: OrderStatusENUM.RECEIVED,
-            [OrderStatusENUM.READY]: OrderStatusENUM.PREPARATION,
-            [OrderStatusENUM.FINISHED]: OrderStatusENUM.READY,
+    validateStatus = (currentStatus: OrderStatusENUM, newStatus: OrderStatusENUM) => {
+        const handleStatus = {
+            [OrderStatusENUM.RECEIVED]: OrderStatusENUM.PREPARATION,
+            [OrderStatusENUM.PREPARATION]: OrderStatusENUM.READY,
+            [OrderStatusENUM.READY]: OrderStatusENUM.FINISHED,
         }
 
-        if (handleStauts[currentStatus] != newStatus) throw new Error(`Invalid status. You can't change status ${currentStatus} to ${newStatus}.`);
+        if (handleStatus[currentStatus] != newStatus) throw new Error(`Invalid status. You can't change status ${currentStatus} to ${newStatus}.`);
     }
 }
