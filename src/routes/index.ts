@@ -10,9 +10,7 @@ healthCheckRoutes.get('/', healthCheckController.check);
 
 // login
 const loginRoutes = Router();
-loginRoutes.post('/', (async () => {
-    loginController.login
-}));
+loginRoutes.post('/', loginController.login);
 
 // custom routes
 router.use('/healthcheck', healthCheckRoutes);
