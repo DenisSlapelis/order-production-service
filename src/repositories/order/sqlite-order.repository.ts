@@ -14,7 +14,7 @@ export class SQLiteOrderRepository implements OrderRepository {
     }
 
     saveHistory(params: SaveHistoryDTO) {
-
+        throw new Error(`Method not implemented yet. Params: ${params}`);
     }
 
     update(params: UpdateOrderDTO) {

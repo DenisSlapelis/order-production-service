@@ -21,5 +21,5 @@ export const localEnvs = {
     APPLICATION_NAME: getEnvironmentVariable('APPLICATION_NAME') ?? 'rural-producer-service',
     DEBUG: getEnvironmentVariable('DEBUG') ?? 'false',
     NODE_ENV: getEnvironmentVariable('NODE_ENV') ?? 'development',
-    PORT: Number(getEnvironmentVariable('PORT')) ?? 8000,
+    PORT: Number(getEnvironmentVariable('PORT') ?? 8000),
 };
