@@ -48,7 +48,7 @@ export class ParameterStore {
 
         const parameters = response.Parameters;
 
-        if (!parameters ?? !parameters.length) return {};
+        if (!parameters ?? !parameters?.length) return {};
 
         const result = {};
 
