@@ -3,9 +3,6 @@ import { injectable } from "tsyringe";
 
 @injectable()
 export class ConfigService {
-    constructor() {
-    }
-
     reload = async () => {
         await env.populateAllEnvs();
 

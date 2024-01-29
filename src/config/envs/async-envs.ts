@@ -15,9 +15,6 @@ export class AsyncEnvs {
         `${this.APPLICATION_NAME}/JWT_PRIVATE_KEY`,
     ];
 
-    constructor() {
-    }
-
     async getValues() {
         const result = {};
 

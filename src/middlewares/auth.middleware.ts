@@ -5,8 +5,6 @@ import { env, publicRoute } from "@dependency";
 
 @singleton()
 export class AuthMiddleware {
-    constructor() { }
-
     use = (req: Request, res: Response, next: NextFunction) => {
         const { headers, method } = req;
 

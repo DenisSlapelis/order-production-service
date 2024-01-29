@@ -5,8 +5,6 @@ import { env } from '@env';
 
 @injectable()
 export class LoginController {
-    constructor() { }
-
     login = async (req: Request, res: Response) => {
         try {
             const token = this.signToken(1);
