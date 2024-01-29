@@ -3,7 +3,7 @@ import { OrderRepository } from "@interfaces/order-repository.interface";
 import { SQLiteOrderRepository } from "@repositories/order/sqlite-order.repository";
 import { CreateOrderUseCase } from "@useCases/create-order.use-case";
 
-describe('Create rural producer use case', () => {
+describe('Create order use case', () => {
     let repository: OrderRepository;
     let useCase: CreateOrderUseCase;
 
@@ -12,10 +12,6 @@ describe('Create rural producer use case', () => {
 
         repository = new SQLiteOrderRepository();
         useCase = new CreateOrderUseCase(repository);
-    });
-
-    beforeEach(() => {
-
     });
 
     describe('create', () => {
