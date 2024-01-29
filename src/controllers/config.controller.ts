@@ -33,7 +33,7 @@ export class ConfigController {
 
             return res.status(200).json(result);
         } catch (error: any) {
-            return res.status(500).json({ message: error?.message || error });
+            return res.status(500).json({ message: error?.message ?? error });
         }
     }
 }

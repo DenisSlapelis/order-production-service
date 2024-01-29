@@ -30,7 +30,7 @@ export class Environment {
     const environmentValue = this.envs[value];
 
     if (process.env.DEBUG == 'true')
-      return process.env[value] || environmentValue;
+      return process.env[value] ?? environmentValue;
 
     return environmentValue;
   }

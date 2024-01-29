@@ -51,7 +51,7 @@ export class SQLiteDatabaseHelper implements Database {
     async findAll(model: Models, options: any) {
         const results = await this.models[model]?.findAll(options);
 
-        return results?.map(result => result.dataValues) || [];
+        return results?.map(result => result.dataValues) ?? [];
     }
 
     async findOne(model: Models, options: any) {

@@ -10,8 +10,8 @@ export class WinstonAdapter {
     options: any;
 
     constructor({ level, meta }) {
-        this.level = level || 'info';
-        this.meta = meta || {};
+        this.level = level ?? 'info';
+        this.meta = meta ?? {};
         this.transports = [winstonConsole];
         this.options = this.formatOptions();
     }

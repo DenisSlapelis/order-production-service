@@ -20,7 +20,7 @@ export class LoggerMiddleware {
         const requestId = crypto.randomUUID();
         req['requestId'] = requestId;
         const { method, headers } = req;
-        const route = req.originalUrl || req.url || '';
+        const route = req.originalUrl ?? req.url ?? '';
         const params = JSON.stringify(req.query);
         const meta = {
             method,
@@ -46,7 +46,7 @@ export class LoggerMiddleware {
     handleFinishEvent = (req: any, res: any, meta: any) => {
         if (res['route'] === this.HEALTH_CHECK_ROUTE) return;
 
-        const statusCode = req?.statusCode || req['req']['statusCode'];
+        const statusCode = req?.statusCode ?? req['req']['statusCode'];
 
         logger.info(`[FINISH-REQUEST] ${res['requestId']} - ${statusCode}`, { statusCode, ...meta });
     };

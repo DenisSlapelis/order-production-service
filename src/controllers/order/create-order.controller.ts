@@ -20,9 +20,9 @@ export class CreateOrderController {
                 stack: error.stack,
             });
 
-            const statusCode = STATUS_CODE_CAUSE[error.cause] || STATUS_CODE.SERVER_ERROR;
+            const statusCode = STATUS_CODE_CAUSE[error.cause] ?? STATUS_CODE.SERVER_ERROR;
 
-            return res.status(statusCode).json({ message: error?.message || error });
+            return res.status(statusCode).json({ message: error?.message ?? error });
         }
     }
 

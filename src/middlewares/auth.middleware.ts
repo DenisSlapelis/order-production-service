@@ -10,7 +10,7 @@ export class AuthMiddleware {
     use = (req: Request, res: Response, next: NextFunction) => {
         const { headers, method } = req;
 
-        const route = req.originalUrl || req.url || '';
+        const route = req.originalUrl ?? req.url ?? '';
 
         if (publicRoute.isPublicRoute(route, method)) return next();
 
