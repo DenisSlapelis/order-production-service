@@ -10,13 +10,15 @@ describe('Create order use case', () => {
     beforeAll(async () => {
         await database.connect();
 
-        await database.delete("Order", {}, { orderId: 1 });
-
         repository = new SQLiteOrderRepository();
         useCase = new CreateOrderUseCase(repository);
     });
 
     describe('create', () => {
+        beforeEach(async () => {
+            await database.delete("Order", {}, { orderId: 1 });
+        });
+
         test('should create correctly', async () => {
             const result = await useCase.create(1, 1);
 
@@ -32,9 +34,9 @@ describe('Create order use case', () => {
         });
 
         test('should throw an error on create with duplicate orderId', async () => {
-            expect(async () => {
-                await useCase.create(1, 1)
-            }).rejects.toThrow();
+            await useCase.create(1, 1);
+
+            expect(useCase.create(1, 1)).rejects.toThrow();
         });
     });
 

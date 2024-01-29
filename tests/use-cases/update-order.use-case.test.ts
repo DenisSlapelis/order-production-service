@@ -11,16 +11,17 @@ describe('Update order use case', () => {
     beforeAll(async () => {
         await database.connect();
 
-        await database.delete("Order", {}, { orderId: 1 });
-
         repository = new SQLiteOrderRepository();
         useCase = new UpdateOrderStatusUseCase(repository);
     });
 
     describe('update', () => {
-        it('should update the order status', async () => {
+        beforeEach(async () => {
+            await database.delete("Order", {}, { orderId: 1 });
             await repository.create({ orderId: 1, status: OrderStatusENUM.RECEIVED, createdBy: 1 });
+        });
 
+        it('should update the order status', async () => {
             const spyRepostoryGetByOrderId = jest.spyOn(repository, 'getByOrderId');
             const spyUseCaseValidateStatus = jest.spyOn(useCase, 'validateStatus');
             const spyRepositoryUpdate = jest.spyOn(repository, 'update');

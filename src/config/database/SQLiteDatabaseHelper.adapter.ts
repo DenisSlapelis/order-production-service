@@ -13,7 +13,7 @@ export class SQLiteDatabaseHelper implements Database {
         this.database = new Sequelize({
             dialect: 'sqlite',
             storage: './src/config/database/order_production_db.sqlite',
-            logging: console.log,
+            logging: false,
         });
         this.models = {
             Order: null
