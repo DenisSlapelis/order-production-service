@@ -31,9 +31,9 @@ export class ConfigController {
         try {
             const result = await this.service.reload();
 
-            return res.status(200).json(result);
+            res.status(200).json(result);
         } catch (error: any) {
-            return res.status(500).json({ message: error?.message ?? error });
+            res.status(500).json({ message: error?.message ?? error });
         }
     }
 }

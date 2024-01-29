@@ -13,7 +13,7 @@ export class CreateOrderController {
 
             const result = await this.useCase.create(orderId, req['sysUserId']);
 
-            return res.status(STATUS_CODE.CREATED).json(result);
+            res.status(STATUS_CODE.CREATED).json(result);
         } catch (error: any) {
             logger.error(error, {
                 origin: 'CreateOrderController',
@@ -22,7 +22,7 @@ export class CreateOrderController {
 
             const statusCode = STATUS_CODE_CAUSE[error.cause] ?? STATUS_CODE.SERVER_ERROR;
 
-            return res.status(statusCode).json({ message: error?.message ?? error });
+            res.status(statusCode).json({ message: error?.message ?? error });
         }
     }
 
