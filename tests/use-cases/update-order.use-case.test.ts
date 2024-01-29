@@ -11,6 +11,8 @@ describe('Update order use case', () => {
     beforeAll(async () => {
         await database.connect();
 
+        await database.delete("Order", {}, { orderId: 1 });
+
         repository = new SQLiteOrderRepository();
         useCase = new UpdateOrderStatusUseCase(repository);
     });
