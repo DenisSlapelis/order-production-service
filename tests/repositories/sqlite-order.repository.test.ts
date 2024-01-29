@@ -57,7 +57,7 @@ describe('Update order use case', () => {
     test('should be called with the correct parameters - update', async () => {
         const databaseSpy = jest.spyOn(database, 'update');
 
-        const result = await repository.update({ orderId: 1, status: OrderStatusENUM.PREPARATION });
+        const result = await repository.update({ orderId: 1, status: OrderStatusENUM.PREPARATION, updatedBy: 1 });
 
         delete result.createdAt;
         delete result.updatedAt;

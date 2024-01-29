@@ -26,7 +26,7 @@ describe('Update order use case', () => {
             const spyUseCaseValidateStatus = jest.spyOn(useCase, 'validateStatus');
             const spyRepositoryUpdate = jest.spyOn(repository, 'update');
 
-            const result = await useCase.update(1, OrderStatusENUM.PREPARATION);
+            const result = await useCase.update({ orderId: 1, status: OrderStatusENUM.PREPARATION, updatedBy: 1 });
 
             delete result.createdAt;
             delete result.updatedAt;
@@ -34,18 +34,18 @@ describe('Update order use case', () => {
 
             expect(spyRepostoryGetByOrderId).toHaveBeenCalledWith(1);
             expect(spyUseCaseValidateStatus).toHaveBeenCalledWith(OrderStatusENUM.RECEIVED, OrderStatusENUM.PREPARATION);
-            expect(spyRepositoryUpdate).toHaveBeenCalledWith({ orderId: 1, status: OrderStatusENUM.PREPARATION });
+            expect(spyRepositoryUpdate).toHaveBeenCalledWith({ orderId: 1, status: OrderStatusENUM.PREPARATION, updatedBy: 1 });
 
             expect(result).toEqual({
                 id: 1,
                 orderId: 1,
                 status: 'PREPARATION',
-                createdBy: 1
+                createdBy: 1,
             });
         });
 
         test('should throw an error for invalid status order', async () => {
-            await expect(useCase.update(1, OrderStatusENUM.RECEIVED)).rejects.toThrow();
+            await expect(useCase.update({ orderId: 1, status: OrderStatusENUM.RECEIVED, updatedBy: 1 })).rejects.toThrow();
         });
     });
 
