@@ -13,6 +13,8 @@ COPY package*.json ./
 
 RUN npm install --ignore-scripts
 
+RUN npm run build
+
 COPY . /app
 
 EXPOSE 8000
