@@ -210,6 +210,7 @@ npm run start
 ## Sonar
 
 ![sonar](docs/assets/sonar.png "sonar")
+![sonar_2](docs/assets/sonar_2.png "sonar_2")
 
 ([Back to Table of contents](#table-of-contents) :arrow_up:)
 
