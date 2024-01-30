@@ -1,7 +1,7 @@
 FROM node:20.9.0-slim AS NODE_PROD
 
-RUN addgroup -S nonroot \
-    && adduser -S nonroot -G nonroot
+# RUN addgroup -S nonroot \
+    # && adduser -S nonroot -G nonroot
 
 USER nonroot
 
@@ -12,6 +12,8 @@ ENV NODE_ENV production
 COPY package*.json ./
 
 RUN npm install --ignore-scripts
+
+RUN npm run build
 
 COPY . /app
 
