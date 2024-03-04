@@ -13,8 +13,10 @@ export class UpdateOrderController {
 
             const orderId = Number(req.body.orderId);
             const status = req.body.status;
+            const customerName = req.body.customerName;
+            const customerNumber = req.body.customerNumber;
 
-            const result = await this.useCase.update({ orderId, status, updatedBy: req['sysUserId'] });
+            const result = await this.useCase.update({ orderId, status, customerName, customerNumber, updatedBy: req['sysUserId'] });
 
             res.status(STATUS_CODE.OK).json(result);
         } catch (error: any) {

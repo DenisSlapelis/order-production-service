@@ -12,6 +12,8 @@ export interface CreateOrderDTO {
 
 export interface UpdateOrderDTO extends CreateOrderDTO {
     updatedBy: number;
+    customerName?: string;
+    customerNumber?: string;
  };
 
 export interface UpdateOrderModelDTO extends UpdateOrderDTO { };
