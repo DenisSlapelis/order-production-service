@@ -13,10 +13,12 @@ import { AsyncEnvs } from '../config/envs/async-envs';
 import { ConfigService } from '@services/config.service';
 import { ConfigController } from '@controllers/config.controller';
 import { LoginController } from '@controllers/login.controller';
+import { AmqplibQueueService } from '@services/amqplib.service';
 
 // Singletons
 export const env = container.resolve(Environment);
 export const database = container.resolve(SQLiteDatabaseHelper);
+export const queue = container.resolve(AmqplibQueueService);
 export const parameterStore = container.resolve(ParameterStore);
 export const asyncEnvs = container.resolve(AsyncEnvs);
 export const loggerMiddleware = container.resolve(LoggerMiddleware);
