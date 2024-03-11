@@ -16,11 +16,11 @@ describe('Create order use case', () => {
 
     describe('create', () => {
         beforeEach(async () => {
-            await database.delete("Order", {}, { orderId: 1 });
+            await database.delete("Order", {}, { orderId: '1' });
         });
 
         test('should create correctly', async () => {
-            const result = await useCase.create(1, 1);
+            const result = await useCase.create('1', 1);
 
             delete result.createdAt;
             delete result.updatedAt;
@@ -28,15 +28,15 @@ describe('Create order use case', () => {
             expect(result).toEqual({
                 createdBy: 1,
                 id: 1,
-                orderId: 1,
+                orderId: '1',
                 status: "RECEIVED",
             });
         });
 
         test('should throw an error on create with duplicate orderId', async () => {
-            await useCase.create(1, 1);
+            await useCase.create('1', 1);
 
-            expect(useCase.create(1, 1)).rejects.toThrow();
+            expect(useCase.create('1', 1)).rejects.toThrow();
         });
     });
 
@@ -54,7 +54,7 @@ describe('Create order use case', () => {
         });
 
         test('should throw an error on create with duplicate orderId', async () => {
-            expect(useCase['checkIfAlreadyExists'](1)).rejects.toThrow();
+            expect(useCase['checkIfAlreadyExists']('1')).rejects.toThrow();
         });
     });
 });

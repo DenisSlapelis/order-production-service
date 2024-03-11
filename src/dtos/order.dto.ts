@@ -6,7 +6,7 @@ export const enum OrderStatusENUM {
 }
 
 export interface CreateOrderDTO {
-    orderId: number;
+    orderId: string;
     status: OrderStatusENUM;
 }
 
@@ -19,7 +19,7 @@ export interface UpdateOrderDTO extends CreateOrderDTO {
 export interface UpdateOrderModelDTO extends UpdateOrderDTO { };
 
 export interface SaveHistoryDTO {
-    orderId: number;
+    orderId: string;
     prev: OrderStatusENUM;
     current: OrderStatusENUM;
 }

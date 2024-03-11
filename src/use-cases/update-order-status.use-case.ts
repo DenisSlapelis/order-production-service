@@ -21,6 +21,8 @@ export class UpdateOrderStatusUseCase {
         await this.repository.update(params);
 
         if (customerName && customerNumber) await this.smsUseCase.send(status, customerName, customerNumber);
+
+        return this.repository.getByOrderId(orderId);
     };
 
     validateStatus = (currentStatus: OrderStatusENUM, newStatus: OrderStatusENUM) => {

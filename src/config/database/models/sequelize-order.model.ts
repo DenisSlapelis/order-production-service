@@ -2,7 +2,7 @@ import { DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, 
 
 export interface OrderDB extends Model<InferAttributes<OrderDB>, InferCreationAttributes<OrderDB>> {
     id: CreationOptional<number>;
-    orderId: number;
+    orderId: string;
     status: string;
 }
 
@@ -14,7 +14,7 @@ export const OrderDBProps = {
         autoIncrement: true,
     },
     orderId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     status: {
