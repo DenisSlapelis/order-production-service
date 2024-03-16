@@ -27,7 +27,13 @@ export class UpdateOrderStatusUseCase {
             const result = await this.repository.update(params);
 
             if (status == OrderStatusENUM.READY || status == OrderStatusENUM.FINISHED) {
-                await this.queueService.send(env.getValue('NEW_ORDER_QUEUE'), result);
+                await this.queueService.send(
+                    env.getValue('NEW_ORDER_QUEUE'),
+                    JSON.stringify({
+                        id: result.orderId,
+                        status: result.status,
+                    })
+                );
             }
 
             if (customerName && customerNumber) await this.smsUseCase.send(status, customerName, customerNumber);

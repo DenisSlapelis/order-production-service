@@ -25,7 +25,7 @@ export class AmqplibQueueService implements QueueService {
         channel.consume(queue, async (msg) => {
             if (!msg) return;
 
-            logger.info(`Recieved: ${msg.content.toString()}`);
+            logger.info(`[${queue}] Recieved: ${msg.content.toString()}`);
 
             await callback(JSON.parse(msg.content.toString()));
 

@@ -19,7 +19,8 @@ export const listenQueues = async () => {
 const newOrderCallback = async (item: any) => {
     const useCase = makeCreateOrderUseCase();
 
-    const { orderId, createdBy } = item;
+    const createdBy = item.createdBy ?? 1;
+    const orderId = item.id;
 
     await useCase.create(orderId, createdBy).catch(async (err) => {
         logger.error(`== newOrderCallback error: ${err.message}`);
@@ -30,6 +31,8 @@ const newOrderCallback = async (item: any) => {
             logger.error(`== newOrderCallback queue error: ${queueError.message}`);
         });
     });
+
+    logger.info(`Pedido criado - id: ${orderId}`);
 };
 
 const changeStatusCallback = async (item: UpdateOrderDTO) => {
