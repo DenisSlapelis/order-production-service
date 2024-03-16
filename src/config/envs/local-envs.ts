@@ -22,6 +22,7 @@ export const localEnvs = {
     DEBUG: getEnvironmentVariable('DEBUG') ?? 'false',
     NODE_ENV: getEnvironmentVariable('NODE_ENV') ?? 'development',
     PORT: Number(getEnvironmentVariable('PORT') ?? 8000),
+    CORS_ORIGIN: getEnvironmentVariable('NODE_ENV'),
 
     // SMS ENVS
     ACCOUNT_SID: getEnvironmentVariable('ACCOUNT_SID'),
