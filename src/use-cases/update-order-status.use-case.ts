@@ -1,11 +1,14 @@
 import { OrderStatusENUM, UpdateOrderDTO } from '@dtos/order.dto';
 import { OrderRepository } from '@interfaces/order-repository.interface';
 import { SendSMSUseCase } from './send-sms.use-case';
+import { QueueService } from '@interfaces/queue.service';
+import { database, env } from '@env';
 
 export class UpdateOrderStatusUseCase {
     constructor(
         private repository: OrderRepository,
-        private readonly smsUseCase: SendSMSUseCase
+        private readonly smsUseCase: SendSMSUseCase,
+        private readonly queueService: QueueService
     ) {}
 
     update = async (params: UpdateOrderDTO) => {
@@ -18,11 +21,23 @@ export class UpdateOrderStatusUseCase {
 
         this.validateStatus(currentStatus, status);
 
-        await this.repository.update(params);
+        const transaction = await database.transaction();
 
-        if (customerName && customerNumber) await this.smsUseCase.send(status, customerName, customerNumber);
+        try {
+            const result = await this.repository.update(params);
 
-        return this.repository.getByOrderId(orderId);
+            if (status == OrderStatusENUM.READY || status == OrderStatusENUM.FINISHED) {
+                await this.queueService.send(env.getValue('NEW_ORDER_QUEUE'), result);
+            }
+
+            if (customerName && customerNumber) await this.smsUseCase.send(status, customerName, customerNumber);
+
+            transaction.commit();
+
+            return result;
+        } catch (err) {
+            transaction.rollback();
+        }
     };
 
     validateStatus = (currentStatus: OrderStatusENUM, newStatus: OrderStatusENUM) => {

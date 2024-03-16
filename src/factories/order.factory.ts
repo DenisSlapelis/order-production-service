@@ -4,6 +4,7 @@ import { SQLiteOrderRepository } from "@repositories/order/sqlite-order.reposito
 import { CreateOrderUseCase } from "@useCases/create-order.use-case";
 import { UpdateOrderStatusUseCase } from "@useCases/update-order-status.use-case";
 import { makeSendSMSUseCase } from "./sms.factory";
+import { queue } from '@env';
 
 export const makeCreateOrderController = () => {
     const useCase = makeCreateOrderUseCase();
@@ -27,5 +28,5 @@ export const makeUpdateOrderUseCase = () => {
     const repository = new SQLiteOrderRepository();
     const SMSUseCase = makeSendSMSUseCase();
 
-    return new UpdateOrderStatusUseCase(repository, SMSUseCase);
+    return new UpdateOrderStatusUseCase(repository, SMSUseCase, queue);
 }

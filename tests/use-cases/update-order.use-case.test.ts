@@ -5,6 +5,7 @@ import { SQLiteOrderRepository } from "@repositories/order/sqlite-order.reposito
 import { SendSMSUseCase } from "@useCases/send-sms.use-case";
 import { UpdateOrderStatusUseCase } from "@useCases/update-order-status.use-case";
 import { makeSendSMSUseCase } from "../../src/factories/sms.factory";
+import { queue } from '@env';
 
 describe('Update order use case', () => {
     let repository: OrderRepository;
@@ -16,7 +17,7 @@ describe('Update order use case', () => {
 
         repository = new SQLiteOrderRepository();
         SMSUseCase = makeSendSMSUseCase();
-        useCase = new UpdateOrderStatusUseCase(repository, SMSUseCase);
+        useCase = new UpdateOrderStatusUseCase(repository, SMSUseCase, queue);
     });
 
     describe('update', () => {

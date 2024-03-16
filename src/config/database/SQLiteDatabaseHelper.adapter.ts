@@ -1,8 +1,8 @@
-import { CountOptions, ModelStatic, Sequelize } from "sequelize";
-import { singleton } from "tsyringe";
+import { CountOptions, ModelStatic, Sequelize } from 'sequelize';
+import { singleton } from 'tsyringe';
 import * as logger from '@logger';
-import { Database, Models } from "@interfaces/database.interface";
-import { OrderDB, OrderDBProps } from "./models/sequelize-order.model";
+import { Database, Models } from '@interfaces/database.interface';
+import { OrderDB, OrderDBProps } from './models/sequelize-order.model';
 
 @singleton()
 export class SQLiteDatabaseHelper implements Database {
@@ -16,7 +16,7 @@ export class SQLiteDatabaseHelper implements Database {
             logging: false,
         });
         this.models = {
-            Order: null
+            Order: null,
         };
     }
 
@@ -35,12 +35,12 @@ export class SQLiteDatabaseHelper implements Database {
     };
 
     authenticate = async () => {
-        await this.database.authenticate().catch(err => {
+        await this.database.authenticate().catch((err) => {
             logger.error(`SEQUELIZE ERROR ON AUTHENTICATE: ${JSON.stringify(err)}`);
 
             throw err;
         });
-    }
+    };
 
     async create(model: Models, params: any): Promise<any> {
         const result = await this.models[model]?.create(params);
@@ -51,7 +51,7 @@ export class SQLiteDatabaseHelper implements Database {
     async findAll(model: Models, options: any) {
         const results = await this.models[model]?.findAll(options);
 
-        return results?.map(result => result.dataValues) ?? [];
+        return results?.map((result) => result.dataValues) ?? [];
     }
 
     async findOne(model: Models, options: any) {
@@ -71,19 +71,25 @@ export class SQLiteDatabaseHelper implements Database {
     }
 
     async update(model: Models, newValues: any, filter: any) {
-        return this.models[model]?.update({
-            ...newValues,
-            updatedAt: new Date(),
-        }, filter);
+        return this.models[model]?.update(
+            {
+                ...newValues,
+                updatedAt: new Date(),
+            },
+            filter
+        );
     }
 
     async delete(model: Models, newValues: any, filter: any) {
-        return this.models[model]?.update({
-            ...newValues,
-            deletedAt: new Date(),
-        }, {
-            where: { ...filter },
-        });
+        return this.models[model]?.update(
+            {
+                ...newValues,
+                deletedAt: new Date(),
+            },
+            {
+                where: { ...filter },
+            }
+        );
     }
 
     async count(model: Models, options: CountOptions) {
@@ -93,5 +99,8 @@ export class SQLiteDatabaseHelper implements Database {
     async sum(model: Models, field: string) {
         return this.models[model]?.sum(field);
     }
-}
 
+    async transaction() {
+        return this.database.transaction();
+    }
+}
