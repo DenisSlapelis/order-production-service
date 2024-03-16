@@ -27,8 +27,10 @@ export class UpdateOrderStatusUseCase {
             const result = await this.repository.update(params);
 
             if (status == OrderStatusENUM.READY || status == OrderStatusENUM.FINISHED) {
-                await this.queueService.send(
-                    env.getValue('NEW_ORDER_QUEUE'),
+                await this.queueService.sendToExchange(
+                    env.getValue('CHANGE_STATUS_EXCHANGE'),
+                    env.getValue('CHANGE_STATUS_EXCHANGE_TYPE'),
+                    true,
                     JSON.stringify({
                         id: result.orderId,
                         status: result.status,

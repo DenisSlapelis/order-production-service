@@ -38,4 +38,12 @@ export class AmqplibQueueService implements QueueService {
 
         channel.sendToQueue(queue, Buffer.from(content));
     };
+
+    sendToExchange = async (name: string, type: string, durable: boolean, content: string): Promise<void> => {
+        const channel = await this.conn!.createChannel();
+
+        await channel.assertExchange(name, type, { durable });
+
+        channel.publish(name, '', Buffer.from(content));
+    };
 }

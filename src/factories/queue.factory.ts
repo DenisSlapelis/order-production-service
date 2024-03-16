@@ -22,7 +22,7 @@ const newOrderCallback = async (item: any) => {
     const createdBy = item.createdBy ?? 1;
     const orderId = item.id;
 
-    await useCase.create(orderId, createdBy).catch(async (err) => {
+    const result = await useCase.create(orderId, createdBy).catch(async (err) => {
         logger.error(`== newOrderCallback error: ${err.message}`);
 
         const errorQueue = env.getValue('NEW_ORDER_ERROR_QUEUE');
@@ -32,13 +32,15 @@ const newOrderCallback = async (item: any) => {
         });
     });
 
-    logger.info(`Pedido criado - id: ${orderId}`);
+    if (result) logger.info(`Pedido criado - id: ${orderId}`);
 };
 
-const changeStatusCallback = async (item: UpdateOrderDTO) => {
+const changeStatusCallback = async (item: any) => {
     const useCase = makeUpdateOrderUseCase();
 
-    await useCase.update(item).catch(async (err) => {
+    const obj: UpdateOrderDTO = { orderId: item.id, status: item.status, updatedBy: item.updatedBy ?? 1 };
+
+    const result = await useCase.update(obj).catch(async (err) => {
         logger.error(`== changeStatusCallback error: ${err.message}`);
 
         const errorQueue = env.getValue('CHANGE_STATUS_ERROR_QUEUE');
@@ -47,4 +49,6 @@ const changeStatusCallback = async (item: UpdateOrderDTO) => {
             logger.error(`== changeStatusCallback queue error: ${queueError.message}`);
         });
     });
+
+    if (result) logger.info(`Status do pedido alterado - id: ${JSON.stringify(item)}`);
 };

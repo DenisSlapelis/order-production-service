@@ -37,4 +37,6 @@ export const localEnvs = {
     NEW_ORDER_ERROR_QUEUE: `${getEnvironmentVariable('NEW_ORDER_QUEUE')}-errors`,
     CHANGE_STATUS_QUEUE: getEnvironmentVariable('CHANGE_STATUS_QUEUE'),
     CHANGE_STATUS_ERROR_QUEUE: `${getEnvironmentVariable('CHANGE_STATUS_QUEUE')}-errors`,
+    CHANGE_STATUS_EXCHANGE: getEnvironmentVariable('CHANGE_STATUS_EXCHANGE'),
+    CHANGE_STATUS_EXCHANGE_TYPE: getEnvironmentVariable('CHANGE_STATUS_EXCHANGE_TYPE'),
 };
