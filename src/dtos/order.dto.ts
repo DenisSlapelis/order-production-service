@@ -3,6 +3,7 @@ export const enum OrderStatusENUM {
     PREPARATION = 'PREPARATION',
     READY = 'READY',
     FINISHED = 'FINISHED',
+    CANCELED = 'CANCELED',
 }
 
 export interface CreateOrderDTO {

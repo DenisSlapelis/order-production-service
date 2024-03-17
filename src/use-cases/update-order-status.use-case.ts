@@ -19,6 +19,8 @@ export class UpdateOrderStatusUseCase {
 
         const currentStatus = order.status;
 
+        if (status == OrderStatusENUM.CANCELED) return this.repository.update(params);
+
         this.validateStatus(currentStatus, status);
 
         const transaction = await database.transaction();
