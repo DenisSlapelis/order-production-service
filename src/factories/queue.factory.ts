@@ -1,6 +1,6 @@
 import { env, queue } from '@env';
 import { makeCreateOrderUseCase, makeUpdateOrderUseCase } from './order.factory';
-import { UpdateOrderDTO } from '@dtos/order.dto';
+import { OrderStatusENUM, UpdateOrderDTO } from '@dtos/order.dto';
 import * as logger from '@logger';
 
 export const listenQueues = async () => {
@@ -38,6 +38,8 @@ const newOrderCallback = async (item: any) => {
 const changeStatusCallback = async (item: any) => {
     const useCase = makeUpdateOrderUseCase();
 
+    if (item.status == 'PAID') item.status = OrderStatusENUM.PREPARATION;
+
     const obj: UpdateOrderDTO = { orderId: item.id, status: item.status, updatedBy: item.updatedBy ?? 1 };
 
     const result = await useCase.update(obj).catch(async (err) => {
@@ -50,5 +52,5 @@ const changeStatusCallback = async (item: any) => {
         });
     });
 
-    if (result) logger.info(`Status do pedido alterado - id: ${JSON.stringify(item)}`);
+    if (result) logger.info(`Status do pedido alterado para ${item.status} - id: ${item.id}`);
 };

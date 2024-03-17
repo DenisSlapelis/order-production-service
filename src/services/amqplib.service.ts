@@ -27,9 +27,15 @@ export class AmqplibQueueService implements QueueService {
 
             logger.info(`[${queue}] Recieved: ${msg.content.toString()}`);
 
-            await callback(JSON.parse(msg.content.toString()));
+            try {
+                const data = JSON.parse(msg.content.toString());
 
-            channel.ack(msg);
+                await callback(data);
+            } catch (err) {
+                console.log(`[${queue}] Error on parse object ${msg.content.toString()}`);
+            } finally {
+                channel.ack(msg);
+            }
         });
     };
 
