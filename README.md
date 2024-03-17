@@ -62,7 +62,7 @@ Microservice to handle Order Productions, using Clean Architecture, TDD and BDD 
 
 ### OWASP ZAP Report
 
-Our first report can be found [here](/docs/zap-reports/first-report.html), and the latest with the corrections is [here](/docs/zap-reports/last-report.html).
+Our first report can be found [here](https://html-preview.github.io/?url=https://github.com/DenisSlapelis/order-production-service/blob/develop/docs/zap-reports/first-report.html), and the latest with the corrections is [here](https://html-preview.github.io/?url=https://github.com/DenisSlapelis/order-production-service/blob/develop/docs/zap-reports/last-report.html).
 
 ([Back to Table of contents](#table-of-contents) :arrow_up:)
 
