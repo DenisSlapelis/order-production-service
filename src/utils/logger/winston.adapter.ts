@@ -23,7 +23,7 @@ export class WinstonAdapter {
             format: combine(
                 format.json(),
                 format.timestamp({
-                    format: 'YYYY-MM-DD HH:MM:SS',
+                    format: 'YYYY-MM-DD HH:mm:SS',
                 }),
                 format.printf((logMessage) => {
                     const { level, timestamp, message } = logMessage;
