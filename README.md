@@ -33,6 +33,11 @@ Microservice to handle Order Productions, using Clean Architecture, TDD and BDD 
 
 ## Table of contents
 
+* [General Info](#table-of-contents)
+    * [ZAP](#zap)
+    * [SAGA](#saga)
+    * [RIPD](#ripd)
+    * [Usage Video](#video)
 * [Usage documentation](#table-of-contents)
     * [Envs](#envs)
     * [Usage with Docker](#table-of-contents)
@@ -50,6 +55,46 @@ Microservice to handle Order Productions, using Clean Architecture, TDD and BDD 
     * [Integrations](#integrations)
         * [Sonar](#sonar)
     * [Folder Structure](#folder-structure)
+
+---
+
+<a name="zap"></a>
+
+### OWASP ZAP Report
+
+Our first report can be found [here](/docs/zap-reports/first-report.html), and the latest with the corrections is [here](/docs/zap-reports/last-report.html).
+
+([Back to Table of contents](#table-of-contents) :arrow_up:)
+
+---
+
+<a name="saga"></a>
+
+### SAGA Pattern
+
+We chose the choreography saga pattern because our business rule is not very complex and doesn't depend on a large number of microservices to be executed, we concluded that the choreography pattern would fit better for this situation. Another point is that since our group consists of only 3 people and we have exactly 3 microservices, it became easier to divide the work as well.
+
+([Back to Table of contents](#table-of-contents) :arrow_up:)
+
+---
+
+<a name="ripd"></a>
+
+### RIPD
+
+You can find our RIPD (Relatório de Impacto dos Dados Pessoais) [here](https://docs.google.com/document/d/1Mw-uWwYO-TxTC0RA1C6AxOLVbDg2zWRdSmP78c5ysr8/edit?usp=sharing).
+
+([Back to Table of contents](#table-of-contents) :arrow_up:)
+
+---
+
+<a name="video"></a>
+
+### Usage Video
+
+You can find an explanatory video about how the entire application works [here]().
+
+([Back to Table of contents](#table-of-contents) :arrow_up:)
 
 ---
 
