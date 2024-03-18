@@ -9,7 +9,7 @@ export class CreateOrderController {
     handle = async (req: Request, res: Response) => {
         try {
             this.validRequiredBodyParams(req.body);
-            const orderId = Number(req.body.orderId);
+            const orderId = req.body.orderId;
 
             const result = await this.useCase.create(orderId, req['sysUserId']);
 

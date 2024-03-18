@@ -22,4 +22,21 @@ export const localEnvs = {
     DEBUG: getEnvironmentVariable('DEBUG') ?? 'false',
     NODE_ENV: getEnvironmentVariable('NODE_ENV') ?? 'development',
     PORT: Number(getEnvironmentVariable('PORT') ?? 8000),
+    CORS_ORIGIN: getEnvironmentVariable('NODE_ENV'),
+
+    // SMS ENVS
+    ACCOUNT_SID: getEnvironmentVariable('ACCOUNT_SID'),
+    AUTH_TOKEN: getEnvironmentVariable('AUTH_TOKEN'),
+    FROM_NUMBER: getEnvironmentVariable('FROM_NUMBER'),
+
+    // AMQP CONFIGS
+    AMQP_HOST: getEnvironmentVariable('AMQP_HOST'),
+    AMQP_USER: getEnvironmentVariable('AMQP_USER'),
+    AMQP_PASS: getEnvironmentVariable('AMQP_PASS'),
+    NEW_ORDER_QUEUE: getEnvironmentVariable('NEW_ORDER_QUEUE'),
+    NEW_ORDER_ERROR_QUEUE: `${getEnvironmentVariable('NEW_ORDER_QUEUE')}-errors`,
+    CHANGE_STATUS_QUEUE: getEnvironmentVariable('CHANGE_STATUS_QUEUE'),
+    CHANGE_STATUS_ERROR_QUEUE: `${getEnvironmentVariable('CHANGE_STATUS_QUEUE')}-errors`,
+    CHANGE_STATUS_EXCHANGE: getEnvironmentVariable('CHANGE_STATUS_EXCHANGE'),
+    CHANGE_STATUS_EXCHANGE_TYPE: getEnvironmentVariable('CHANGE_STATUS_EXCHANGE_TYPE'),
 };

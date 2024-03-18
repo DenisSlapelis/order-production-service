@@ -1,13 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import { router as routes } from './routes'
-import { authMiddleware, loggerMiddleware } from '@utils/dependency.utils';
+import { authMiddleware, env, loggerMiddleware } from '@utils/dependency.utils';
 
 export const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+    origin: env.getValue('CORS_ORIGIN'),
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use(loggerMiddleware.use);
 

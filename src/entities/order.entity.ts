@@ -1,7 +1,7 @@
 import { CreateOrderDTO, OrderStatusENUM } from "@dtos/order.dto";
 
 export class Order {
-    readonly orderId: number;
+    readonly orderId: string;
     readonly status: OrderStatusENUM;
 
     constructor(params: CreateOrderDTO) {

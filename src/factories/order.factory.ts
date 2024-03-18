@@ -3,6 +3,8 @@ import { UpdateOrderController } from "@controllers/order/update-order.controlle
 import { SQLiteOrderRepository } from "@repositories/order/sqlite-order.repository";
 import { CreateOrderUseCase } from "@useCases/create-order.use-case";
 import { UpdateOrderStatusUseCase } from "@useCases/update-order-status.use-case";
+import { makeSendSMSUseCase } from "./sms.factory";
+import { queue } from '@env';
 
 export const makeCreateOrderController = () => {
     const useCase = makeCreateOrderUseCase();
@@ -24,6 +26,7 @@ export const makeCreateOrderUseCase = () => {
 
 export const makeUpdateOrderUseCase = () => {
     const repository = new SQLiteOrderRepository();
+    const SMSUseCase = makeSendSMSUseCase();
 
-    return new UpdateOrderStatusUseCase(repository);
+    return new UpdateOrderStatusUseCase(repository, SMSUseCase, queue);
 }

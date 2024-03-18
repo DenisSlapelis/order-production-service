@@ -7,7 +7,7 @@ export class SQLiteOrderRepository implements OrderRepository {
         return database.create('Order', params);
     }
 
-    async getByOrderId(orderId: number) {
+    async getByOrderId(orderId: string) {
         return database.findOne("Order", {
             where: { orderId }
         });
