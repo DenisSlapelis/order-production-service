@@ -74,6 +74,8 @@ Our first report can be found [here](https://html-preview.github.io/?url=https:/
 
 We chose the choreography saga pattern because our business rule is not very complex and doesn't depend on a large number of microservices to be executed, we concluded that the choreography pattern would fit better for this situation. Another point is that since our group consists of only 3 people and we have exactly 3 microservices, it became easier to divide the work as well.
 
+![saga](docs/assets/saga.svg "Saga")
+
 ([Back to Table of contents](#table-of-contents) :arrow_up:)
 
 ---
@@ -92,7 +94,7 @@ You can find our RIPD (Relatório de Impacto dos Dados Pessoais) [here](https://
 
 ### Usage Video
 
-You can find an explanatory video about how the entire application works [here]().
+You can find an explanatory video playlist about how the entire application works [here](https://www.youtube.com/watch?v=jbczUd8j2iI&list=PLYCTn1Be4VEZDL9zT4IxJKcw5vP9bnVRk).
 
 ([Back to Table of contents](#table-of-contents) :arrow_up:)
 
