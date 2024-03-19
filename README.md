@@ -38,6 +38,7 @@ Microservice to handle Order Productions, using Clean Architecture, TDD and BDD 
     * [SAGA](#saga)
     * [RIPD](#ripd)
     * [Usage Video](#video)
+    * [Customer Notification](#customer-notification)
 * [Usage documentation](#table-of-contents)
     * [Envs](#envs)
     * [Usage with Docker](#table-of-contents)
@@ -95,6 +96,19 @@ You can find our RIPD (Relatório de Impacto dos Dados Pessoais) [here](https://
 ### Usage Video
 
 You can find an explanatory video playlist about how the entire application works [here](https://www.youtube.com/watch?v=jbczUd8j2iI&list=PLYCTn1Be4VEZDL9zT4IxJKcw5vP9bnVRk).
+
+([Back to Table of contents](#table-of-contents) :arrow_up:)
+
+---
+
+<a name="customer-notification"></a>
+
+### Customer Notification
+
+We send SMS to customers as soon as the order starts to be prepared and also when the order is ready.
+
+![sms_1](docs/assets/sms_1.jpeg "sms_1")
+![sms_2](docs/assets/sms_2.jpeg "sms_2")
 
 ([Back to Table of contents](#table-of-contents) :arrow_up:)
 
